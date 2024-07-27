@@ -2,7 +2,7 @@ const express=require('express');
 const { dbConnection } = require('./database/config');
 require('dotenv').config();
 var cors = require('cors')
-
+const path=require('path')
 // console.log(process.env);
 
 
@@ -27,7 +27,9 @@ app.use(express.json());
 app.use('/api/auth',require('./routes/auth'));
 app.use('/api/events',require('./routes/events'));
 //todo:crud eventos
-
+app.use('*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'public/index.html'));
+})
 
 
 
